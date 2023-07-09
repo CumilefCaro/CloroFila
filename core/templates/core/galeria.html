@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block contenido %}
+{% block css %}
+{% endblock %}
+<br>
+<br>
+<!-- contenido galeria-->
+
+{% load humanize%}
+<div class="row"></div>
+<h2>Productos</h2>
+<div class="productos">
+    {% for p in productos%}
+
+<div class="producto">
+
+    <div class="contenedor_producto">
+        {% if p.imagen %}
+
+        <img src="{{ p.imagen.url}}" alt="imagen producto">
+        {% endif %}
+        <div class="detalle">
+            <h5>{{ p.categoria }}</h5>
+            <h2>{{ p.nombre }}</h2>
+            <h3>${{ p.precio | intcomma }}</h3>
+        </div>
+
+    </div>
+
+</div>
+     {% endfor%}
+</div>
+
+
+<!-- contenido galeria-->
+<br><br><br>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
+    
+
+
+
+    
+
+
+
+
+
+
+ 
+
+    
