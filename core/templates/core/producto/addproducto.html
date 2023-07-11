@@ -3,16 +3,19 @@
 {% block contenido %}
 {% block css %}
 {% endblock %}
+{% load crispy_forms_tags %}
 <div class="card">
   <div class="card-body">
     <h3>Agregar Producto</h3>
-    <table class="table table-striped table=hover table=responsive-sm "></table>
+    <table class="table table-striped table-hover table-responsive-sm "></table>
     <form action="" method = "POST" enctype="multipart/form-data">
       {% csrf_token %} 
-      <table>
-      {{ form }}
-      </table>
-      <input type="submit" class="bttn btn=success" value="Guardar">
+      
+      {{ form | crispy }}
+      
+      <input type="reset" value="Cancelar" class="bttn btn-secundary">
+
+      <input type="submit" class="bttn btn-secundary" value="Guardar">
     </form>
     <br><br><br>
     <h3>{{ msj }}</h3>

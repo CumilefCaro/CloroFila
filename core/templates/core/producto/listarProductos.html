@@ -6,6 +6,7 @@
 <br>
 <br>
 <br>
+
 <div class="card">
     <div class="card-body">
         <h3>Listado de productos</h3>
@@ -26,6 +27,11 @@
                 <td>
                     <a href="{% url 'modificarProducto' p.id%}" class="btn btn-success btn-sm">Modificar</a>
                     <a href="{% url 'eliminarProducto' p.id%}" class="btn btn-danger btn-sm">Eliminar</a>
+                   
+  
+                   
+                    
+                  
                 </td>
             </tr>
             {% endfor %}
