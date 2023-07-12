@@ -34,7 +34,7 @@
                         <a href="{% url 'index' %}"> Inicio </a>
                     </li>
                     <li>
-                        <a href="{% url 'contacto' %}">Contacto</a>
+                        <a href="{% url 'contacto' %}">¿Quienes somos?</a>
                     </li>
                     <li>
                         <a href="{% url 'listarProductos' %}">Productos</a>
@@ -100,11 +100,12 @@
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'success'
+      cancelButtonText:'Cancelar',
+      confirmButtonText: 'Confirmar'
     })
     </script>
     {% endfor %} 
-    {% endif %}
+{% endif %}
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script src="js/menu.js"></script>
 

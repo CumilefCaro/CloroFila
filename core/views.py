@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login
 from .models import *
 from django.core.paginator import Paginator
 from django.http import Http404
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 
@@ -29,13 +30,15 @@ def galeria(request):
 
 def home(request):
      return render(request, 'core/home.html')
+
+@permission_required('core.add_producto')
 def addproducto(request):
      data = {
           'form' : ProductoForm()
 
      }
      
-     if request.method == 'POST':
+     if request.method == "POST":
           formulario = ProductoForm(request.POST,files=request.FILES)
           if formulario.is_valid():
                formulario.save()
@@ -54,7 +57,7 @@ def listarProductos(request):
      
      return render(request,'core/producto/listarProductos.html', data)
 
-
+@permission_required('core.change_producto')
 def modificarProducto(request, id):
      produ = get_object_or_404(Producto, id=id)
      data ={
@@ -69,7 +72,7 @@ def modificarProducto(request, id):
           data ['form'] = formulario
 
      return render(request,'core/producto/modificarProducto.html', data)
-
+@permission_required('core.delete_producto')
 def eliminarProducto(request, id):
      produ = get_object_or_404(Producto, id=id)
      produ.delete()
@@ -86,9 +89,9 @@ def registro(request):
          if formulario.is_valid():
               formulario.save()
               user = authenticate(username=formulario.cleaned_data ["username"], password=formulario.cleaned_data["password1"])
-              login(request, user )
+              
               messages.success(request, "Registrado correctamente")
-              return redirect(to=home)
+              return redirect(to=registro)
               
     
      return render(request, 'registration/registro.html',data)
