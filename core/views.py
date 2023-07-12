@@ -42,6 +42,7 @@ def addproducto(request):
           formulario = ProductoForm(request.POST,files=request.FILES)
           if formulario.is_valid():
                formulario.save()
+               messages.success(request, "Producto registrado")
               
           else:     
                data ['form'] = formulario
@@ -50,8 +51,16 @@ def addproducto(request):
 
 def listarProductos(request):
      prod =Producto.objects.all()
+     page = request.GET.get('page', 1)
+
+     try:
+          paginator = Paginator(prod,4) 
+          prod = paginator.page(page)
+     except:
+          raise Http404 
      data = {
-          'prod' : prod
+          'entity' : prod,
+          'paginator' : paginator
      }
        
      
@@ -76,7 +85,7 @@ def modificarProducto(request, id):
 def eliminarProducto(request, id):
      produ = get_object_or_404(Producto, id=id)
      produ.delete()
-     
+     messages.success(request, "Eliminado correctamente")
      
      return redirect(to="listarProductos")
 

@@ -62,13 +62,7 @@
     </header>
        
     <div id="contenido">  
-        {% if messages %}
-            {% for m in message%}
-             {{ m }}
-            {% endfor%}
-
-
-        {% endif%}
+      
 
         {% block contenido %}
 
@@ -94,14 +88,9 @@
     {% for aux in messages %} 
     <script>
       Swal.fire({
-      title: 'Confirmación',
-      text: '{{ aux }}',
-      icon: 'success',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText:'Cancelar',
-      confirmButtonText: 'Confirmar'
+      title: 'Felicitaciones',
+      text: '{{ aux }}'
+      
     })
     </script>
     {% endfor %} 
